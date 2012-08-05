@@ -1,4 +1,4 @@
-﻿<a name="mytodo-sample" />
+<a name="mytodo-sample" />
 # myTODO Sample #
 
 ---
@@ -14,3 +14,6 @@ The sample was built using [ASP.NET MVC 4](http://www.asp.net/mvc/mvc4), [jQuery
 <a name="getting-started" />
 ## Getting Started ##
 The sample includes a step-by-step [getting started](https://github.com/WindowsAzure-Samples/MyTODO/blob/master/GettingStarted.md) document explaining the setup process for myTODO. The whole setup process should take 15 minutes, in which you'll get a great introduction to how ASP.NET MVC and Windows Azure Web Sites. 
+
+## Sample Site on MSDN ##
+This sample is also provided via the [MSDN Windows Azure Samples Site](http://code.msdn.microsoft.com/MyTODO-on-Windows-Azure-731f88d0). You can download the code in zip format from MSDN [here](http://code.msdn.microsoft.com/MyTODO-on-Windows-Azure-731f88d0/file/62133/8/MyTODO%20on%20Windows%20Azure%20Web%20Sites.zip). 
