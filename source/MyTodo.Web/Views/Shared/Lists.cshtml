@@ -35,7 +35,7 @@
     <script type="text/javascript" src="@(Url.Content("~/Scripts/plugin.listitem.js"))"></script>
     <script type="text/javascript" src="@(Url.Content("~/Scripts/services.lists.js"))"></script>
     <script type="text/javascript">
-        var authenticatedUser = @(Request.IsAuthenticated.ToString().ToLower());
+        var authenticatedUser = '@(Request.IsAuthenticated.ToString().ToLower())';
         var userName = '@(Request.IsAuthenticated ? User.Identity.Name.ToLower() : "")';
         var listsService;
            

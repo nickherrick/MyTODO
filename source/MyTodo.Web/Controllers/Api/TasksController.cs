@@ -48,7 +48,7 @@ namespace MyTodo.Web.Controllers.Api
         // /api/lists/{taskListId}/Tasks
         public IQueryable<Task> Get(Guid taskListId)
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
             return this.model.Tasks.Where(o => o.TaskListId == taskListId && (o.TaskList.UserName == userName || o.TaskList.IsPublic == 1));
         }
 
@@ -57,7 +57,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public Task Get(Guid taskListId, Guid id)
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
             return this.model.Tasks.SingleOrDefault(o => o.TaskList.UserName == userName && o.TaskList.Id == taskListId && o.Id == id);
         }
 
@@ -66,7 +66,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public Task Post(Guid taskListId, Task task)
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             var listExists = this.model.TaskLists.Count(o => o.UserName == userName && o.Id == taskListId) == 1;
             if (!listExists)
@@ -91,7 +91,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public Task Put(Guid taskListId, Task value)
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             var belongsToUser = this.model.Tasks.Count(o => o.Id == value.Id && o.TaskList.Id == taskListId && o.TaskList.UserName == userName) == 1;
             if (!belongsToUser)
@@ -117,7 +117,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public void Delete(Guid taskListId, Guid id)
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             var originalTask = this.model.Tasks.SingleOrDefault(o => o.Id == id && o.TaskList.Id == taskListId && o.TaskList.UserName == userName);
             if (originalTask == null)
