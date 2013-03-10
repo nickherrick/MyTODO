@@ -46,7 +46,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public IQueryable<TaskList> Get()
         {
-            var userName = this.Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
             return this.model.TaskLists.Where(o => o.UserName == userName)
                                        .OrderBy(o => o.Name);
         }
@@ -56,7 +56,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public TaskList Get(Guid id)
         {
-            var userName = Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
             return this.model.TaskLists.SingleOrDefault(o => o.UserName == userName && o.Id == id);
         }
 
@@ -65,7 +65,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public TaskList Post(TaskList value)
         {
-            var userName = Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             value.Id = Guid.NewGuid();
             value.UserName = userName;
@@ -81,7 +81,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public TaskList Put(Guid id, TaskList value)
         {
-            var userName = Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             var belongsToUser = this.model.TaskLists.Count(o => o.Id == id && o.UserName == userName) == 1;
             if (!belongsToUser)
@@ -104,7 +104,7 @@ namespace MyTodo.Web.Controllers.Api
         [Authorize]
         public void Delete(Guid id)
         {
-            var userName = Request.GetUserPrincipal().Identity.Name;
+            var userName = this.User.Identity.Name;
 
             var originalList = this.model.TaskLists.SingleOrDefault(o => o.Id == id && o.UserName == userName);
             if (originalList != null)
